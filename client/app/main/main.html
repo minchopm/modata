@@ -1,0 +1,30 @@
+<header class="hero-unit" id="banner">
+  <div id="container" class="container">
+    <div class="row">
+      <div class="col-md-6"><span>Name:<b>{{imageName}}</b></span></div>
+      <div class="col-md-6"><span><i class="glyphicon glyphicon-search"></i> <input ng-model="search" type="text"/></span></div>
+    </div>
+    <div class="row">
+      <canvas width="350" height="76" id="hero-bar" class="chart chart-line"
+              chart-data="data" chart-options="options" chart-labels="labels"
+              style="display: block; width:277px; height: 70px;">
+      </canvas>
+    </div>
+  </div>
+</header>
+
+
+<div class="grid">
+  <hot-table settings="settings"
+             row-headers="false"
+             min-spare-rows="minSpareRows"
+             datarows="pidList">
+    <hot-column data="PID" title="'PID'" read-only></hot-column>
+    <hot-column data="imageName" title="'Service Name'" type="grayedOut" read-only></hot-column>
+    <hot-column data="memUsage" title="'Memory Usage'" width="150" read-only></hot-column>
+    <hot-column data="sessionName" title="'Session Name'" width="150" read-only></hot-column>
+    <hot-column data="session" title="'Session'" width="150" read-only>
+    </hot-column>
+    <hot-column data="button" title="'Terminate'" width="80" editor="false" renderer="html"></hot-column>
+  </hot-table>
+</div>

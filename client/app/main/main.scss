@@ -1,0 +1,31 @@
+main {
+  height: 100%;
+  position: relative;
+
+  header {
+    height: 270px !important;
+    border-bottom: none;
+    margin-top: -20px;
+    position: relative;
+    padding: 30px 15px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    canvas {
+      pointer-events: none;
+    }
+  }
+  .grid {
+    height: calc(100% - 340px);
+    width: 100%;
+    position: relative;
+    overflow: auto;
+  }
+
+  .currentRow {
+    background: lightcyan;
+  }
+}
+
+[ui-view] {
+  height: 100%;
+}

@@ -12,14 +12,22 @@
 import _ from 'lodash';
 import Pid from './pid.model';
 var exec = require('child_process').exec;
+import {getSocket} from "../../personalData";
+var socket;
 
-var getTasks = function (err, stdout, stderr) {
+
+/*var getTasks = function (err, stdout, stderr) {
   // console.log(stdout)
-  Pid.create({info: stdout});
+  // Pid.create({info: stdout});
+  if(!(socket && 'emit' in socket)) {
+    socket = getSocket();
+  } else {
+    socket.emit('pid:save', {info: stdout});
+  }
 }
 setInterval(()=> {
   exec('tasklist', getTasks);
-}, 500)
+}, 1500)*/
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -73,7 +81,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Pids
 export function index(req, res) {
-  return Pid.find().sort({$natural:1}).limit(2000).exec()
+  return Pid.find().sort({$natural:1}).limit(1).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

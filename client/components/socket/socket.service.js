@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('modataApp')
-  .factory('socket', function(socketFactory) {
+  .factory('socket', function (socketFactory) {
     // socket.io now auto-configures its connection when we ommit a connection url
     var ioSocket = io('', {
       // Send auth token on connection, you will need to DI the Auth service above
@@ -13,6 +13,7 @@ angular.module('modataApp')
     var socket = socketFactory({
       ioSocket
     });
+
 
     return {
       socket,
@@ -33,7 +34,7 @@ angular.module('modataApp')
         /**
          * Syncs item creation/updates on 'model:save'
          */
-        socket.on(modelName + ':save', function(item) {
+        socket.on(modelName + ':save', function (item) {
           var oldItem = _.find(array, {
             _id: item._id
           });
@@ -46,7 +47,7 @@ angular.module('modataApp')
             array.splice(index, 1, item);
             event = 'updated';
           } else {
-            array.push(item.info);
+            array.push(item)
           }
 
           cb(event, item, array);
@@ -55,7 +56,7 @@ angular.module('modataApp')
         /**
          * Syncs removed items on 'model:remove'
          */
-        socket.on(modelName + ':remove', function(item) {
+        socket.on(modelName + ':remove', function (item) {
           var event = 'deleted';
           _.remove(array, {
             _id: item._id
